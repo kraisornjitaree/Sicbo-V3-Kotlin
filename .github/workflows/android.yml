@@ -17,8 +17,12 @@ jobs:
           distribution: temurin
           java-version: 17
 
+      # ใช้ Gradle action โดยตรง (ไม่พึ่ง gradle wrapper .jar)
       - name: Build APK
-        run: ./gradlew assembleDebug
+        uses: gradle/gradle-build-action@v2
+        with:
+          gradle-version: 8.2
+          arguments: assembleDebug
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
